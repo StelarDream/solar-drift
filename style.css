@@ -1,15 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;700&family=Crimson+Pro:ital,wght@0,300;0,400;1,300&family=Space+Mono:wght@400;700&display=swap');
 
 :root {
-    --fg: #e8f0f7;
-    --muted: #a8c5d8;
-    --hint: #6b8fa3;
-    --border: #1a3f52;
-    --surface: #0f1f2e;
-    --surface-light: #152a3a;
-    --accent-warm: #d4a574;
-    --accent-cool: #4fb3d9;
-    --bg-deep: #0a1420;
+    --fg: #eaf0ff;
+    --muted: #a0c0e0;
+    --hint: #6080a8;
+    --border: rgba(96, 160, 240, 0.18);
+    --surface: #06090f;
+    --surface-light: #0c1022;
+    --accent-warm: #e8a060;
+    --accent-cool: #60c8f8;
+    --accent-nebula: #b870f0;
+    --accent-aurora: #38e8c0;
+    --bg-deep: #020408;
 }
 
 * {
@@ -23,10 +25,64 @@ html {
 }
 
 body {
-    background: linear-gradient(135deg, var(--bg-deep) 0%, #0d1a2e 50%, var(--surface) 100%);
+    background:
+        radial-gradient(ellipse at 18% 28%, rgba(100, 30, 180, 0.28) 0%, transparent 48%),
+        radial-gradient(ellipse at 82% 72%, rgba(20, 60, 160, 0.32) 0%, transparent 50%),
+        radial-gradient(ellipse at 65% 8%,  rgba(200, 55, 110, 0.14) 0%, transparent 38%),
+        radial-gradient(ellipse at 8%  80%, rgba(30, 110, 200, 0.18) 0%, transparent 42%),
+        radial-gradient(ellipse at 50% 50%, rgba(60, 20, 100, 0.2)  0%, transparent 70%),
+        linear-gradient(165deg, #020408 0%, #050810 45%, #080c18 100%);
     background-attachment: fixed;
     min-height: 100vh;
     font-family: 'Crimson Pro', serif;
+    position: relative;
+}
+
+/* Starfield layer */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background-image:
+        radial-gradient(1px 1px at  8% 14%, rgba(255,255,255,0.75) 0%, transparent 100%),
+        radial-gradient(1px 1px at 18% 62%, rgba(255,255,255,0.50) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 27% 31%, rgba(200,230,255,0.65) 0%, transparent 100%),
+        radial-gradient(1px 1px at 35% 78%, rgba(255,255,255,0.45) 0%, transparent 100%),
+        radial-gradient(2px 2px at 43%  5%, rgba(220,200,255,0.70) 0%, transparent 100%),
+        radial-gradient(1px 1px at 52% 44%, rgba(255,255,255,0.35) 0%, transparent 100%),
+        radial-gradient(1px 1px at 60% 89%, rgba(255,255,255,0.50) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 68% 22%, rgba(200,240,255,0.60) 0%, transparent 100%),
+        radial-gradient(1px 1px at 75% 55%, rgba(255,255,255,0.40) 0%, transparent 100%),
+        radial-gradient(2px 2px at 82% 10%, rgba(255,255,255,0.70) 0%, transparent 100%),
+        radial-gradient(1px 1px at 90% 38%, rgba(255,255,255,0.45) 0%, transparent 100%),
+        radial-gradient(1px 1px at 95% 70%, rgba(200,210,255,0.55) 0%, transparent 100%),
+        radial-gradient(1px 1px at  4% 50%, rgba(255,255,255,0.40) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 13% 88%, rgba(255,255,255,0.55) 0%, transparent 100%),
+        radial-gradient(1px 1px at 22% 18%, rgba(220,220,255,0.35) 0%, transparent 100%),
+        radial-gradient(1px 1px at 38% 95%, rgba(255,255,255,0.45) 0%, transparent 100%),
+        radial-gradient(1px 1px at 47% 72%, rgba(255,255,255,0.30) 0%, transparent 100%),
+        radial-gradient(2px 2px at 58% 35%, rgba(180,210,255,0.65) 0%, transparent 100%),
+        radial-gradient(1px 1px at 70%  3%, rgba(255,255,255,0.50) 0%, transparent 100%),
+        radial-gradient(1px 1px at 85% 82%, rgba(255,255,255,0.40) 0%, transparent 100%),
+        radial-gradient(1.5px 1.5px at 93% 52%, rgba(220,200,255,0.60) 0%, transparent 100%),
+        radial-gradient(1px 1px at  2% 96%, rgba(255,255,255,0.35) 0%, transparent 100%),
+        radial-gradient(1px 1px at 31% 43%, rgba(255,255,255,0.45) 0%, transparent 100%),
+        radial-gradient(1px 1px at 55% 16%, rgba(200,240,255,0.55) 0%, transparent 100%),
+        radial-gradient(2px 2px at 78% 68%, rgba(255,255,255,0.60) 0%, transparent 100%);
+}
+
+/* Faint nebula shimmer on top of stars */
+body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    background:
+        radial-gradient(ellipse 40% 25% at 30% 20%, rgba(160, 80, 220, 0.08) 0%, transparent 100%),
+        radial-gradient(ellipse 30% 20% at 75% 60%, rgba(56, 232, 192, 0.06) 0%, transparent 100%);
 }
 
 .doc {
@@ -34,16 +90,40 @@ body {
     font-size: 18px;
     line-height: 1.75;
     color: var(--fg);
-    max-width: 700px;
+    max-width: 900px;
     margin: 2rem auto;
-    padding: 3rem 2rem 5rem;
-    background: rgba(10, 20, 32, 0.5);
+    padding: 3.5rem 3.5rem 5.5rem;
+    background: rgba(5, 8, 18, 0.72);
     border: 1px solid var(--border);
-    box-shadow: 
-        inset 0 0 60px rgba(79, 179, 217, 0.05),
-        0 0 60px rgba(0, 0, 0, 0.5);
-    border-radius: 8px;
-    backdrop-filter: blur(2px);
+    box-shadow:
+        inset 0 0 80px rgba(96, 160, 240, 0.04),
+        inset 0 0 140px rgba(160, 80, 240, 0.03),
+        0 0 100px rgba(0, 0, 0, 0.7),
+        0 0 220px rgba(80, 24, 160, 0.12);
+    border-radius: 10px;
+    backdrop-filter: blur(10px);
+    position: relative;
+    z-index: 1;
+}
+
+/* Luminous top edge */
+.doc::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 8%;
+    right: 8%;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(96, 160, 240, 0.55),
+        rgba(184, 112, 240, 0.5),
+        rgba(56, 232, 192, 0.4),
+        rgba(96, 160, 240, 0.55),
+        transparent
+    );
+    border-radius: 50%;
 }
 
 .sr-only {
@@ -60,21 +140,24 @@ body {
     font-weight: 400;
     letter-spacing: 0.22em;
     text-transform: uppercase;
-    color: var(--accent-cool);
+    color: var(--accent-aurora);
     margin-bottom: 1.5rem;
-    opacity: 0.85;
-    text-shadow: 0 0 10px rgba(79, 179, 217, 0.2);
+    opacity: 0.8;
+    text-shadow: 0 0 12px rgba(56, 232, 192, 0.4);
 }
 
 h1 {
     font-family: 'Syne', sans-serif;
-    font-size: 52px;
+    font-size: 58px;
     font-weight: 700;
     line-height: 1.1;
     color: var(--fg);
     margin-bottom: 0.5rem;
-    text-shadow: 0 0 20px rgba(79, 179, 217, 0.15);
-    letter-spacing: -1px;
+    text-shadow:
+        0 0 24px rgba(96, 160, 240, 0.45),
+        0 0 70px rgba(160, 80, 240, 0.22),
+        0 0 120px rgba(96, 160, 240, 0.1);
+    letter-spacing: -1.5px;
 }
 
 .tagline {
@@ -97,19 +180,20 @@ h2 {
     font-family: 'Space Mono', monospace;
     font-size: 10px;
     font-weight: 400;
-    letter-spacing: 0.2em;
+    letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--accent-warm);
     margin-bottom: 1.2rem;
     padding-bottom: 0.8rem;
-    border-bottom: 1px solid rgba(212, 165, 116, 0.3);
+    border-bottom: 1px solid rgba(232, 160, 96, 0.25);
     opacity: 0.9;
+    text-shadow: 0 0 10px rgba(232, 160, 96, 0.25);
 }
 
 p {
     margin-bottom: 1.2rem;
     color: var(--fg);
-    opacity: 0.96;
+    opacity: 0.93;
 }
 
 p:last-child {
@@ -121,13 +205,14 @@ p:last-child {
     font-size: 19px;
     font-weight: 300;
     color: var(--muted);
-    border-left: 3px solid var(--accent-cool);
-    background: rgba(79, 179, 217, 0.08);
-    padding: 1.5rem;
+    border-left: 2px solid var(--accent-nebula);
+    background: rgba(184, 112, 240, 0.07);
+    padding: 1.5rem 1.8rem;
     margin: 2rem -0.5rem;
     line-height: 1.7;
     border-radius: 4px;
-    backdrop-filter: blur(4px);
+    backdrop-filter: blur(6px);
+    box-shadow: inset 0 0 40px rgba(160, 80, 240, 0.04);
 }
 
 .pill-row {
@@ -145,17 +230,20 @@ p:last-child {
     text-transform: uppercase;
     padding: 8px 16px;
     border-radius: 4px;
-    border: 1px solid var(--accent-cool);
+    border: 1px solid rgba(96, 200, 248, 0.4);
     color: var(--accent-cool);
-    background: rgba(79, 179, 217, 0.12);
+    background: rgba(96, 200, 248, 0.08);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: default;
-    backdrop-filter: blur(4px);
+    backdrop-filter: blur(6px);
 }
 
 .pill:hover {
-    background: rgba(79, 179, 217, 0.2);
-    box-shadow: 0 0 16px rgba(79, 179, 217, 0.3);
+    background: rgba(96, 200, 248, 0.16);
+    box-shadow:
+        0 0 14px rgba(96, 200, 248, 0.35),
+        0 0 30px rgba(160, 80, 240, 0.15);
+    border-color: rgba(96, 200, 248, 0.7);
     transform: translateY(-1px);
 }
 
@@ -163,7 +251,7 @@ p:last-child {
     border: none;
     border-top: 1px solid var(--border);
     margin: 3.5rem 0;
-    opacity: 0.6;
+    opacity: 0.5;
 }
 
 em {
@@ -177,9 +265,9 @@ strong {
     color: var(--accent-warm);
 }
 
-/* Scrollbar styling */
+/* Scrollbar */
 ::-webkit-scrollbar {
-    width: 8px;
+    width: 6px;
 }
 
 ::-webkit-scrollbar-track {
@@ -187,30 +275,42 @@ strong {
 }
 
 ::-webkit-scrollbar-thumb {
-    background: rgba(79, 179, 217, 0.3);
-    border-radius: 4px;
+    background: rgba(96, 200, 248, 0.25);
+    border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: rgba(79, 179, 217, 0.5);
+    background: rgba(184, 112, 240, 0.45);
 }
 
-/* Selection styling */
+/* Selection */
 ::selection {
-    background: rgba(212, 165, 116, 0.3);
+    background: rgba(184, 112, 240, 0.3);
     color: var(--fg);
 }
 
 /* Responsive */
-@media (max-width: 720px) {
+@media (max-width: 960px) {
     .doc {
-        padding: 2rem 1.5rem 3rem;
-        border-radius: 4px;
-        margin: 1rem 0.5rem;
+        max-width: 100%;
+        margin: 1rem;
+        padding: 2.5rem 2rem 4rem;
     }
 
     h1 {
-        font-size: 40px;
+        font-size: 46px;
+    }
+}
+
+@media (max-width: 540px) {
+    .doc {
+        padding: 2rem 1.5rem 3rem;
+        border-radius: 6px;
+        margin: 0.5rem;
+    }
+
+    h1 {
+        font-size: 38px;
     }
 
     .tagline {
